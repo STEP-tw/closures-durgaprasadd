@@ -65,7 +65,13 @@ const curry = function(func,number){
   }
 }
 
-const compose = undefined;
+//-------------compose----------
+const compose = function(firstFunction,secondFunction){
+  return function(list1,list2){
+    return firstFunction(secondFunction(list1,list2));
+  }
+}
+
 
 exports.makeConstant=makeConstant;
 exports.makeCounterFromZero=makeCounterFromZero;
