@@ -30,7 +30,18 @@ const makeDeltaTracker = function(old){
   }
 }
 
-const makeFiboGenerator = undefined;
+//--------makeFiboGenerator------------
+const makeFiboGenerator = function(prevValue,nextValue){
+  if(!prevValue){prevValue =0;nextValue = 1};
+  if(!nextValue){nextValue = prevValue;prevValue =0};
+  return function(){
+    let currentValue = prevValue;
+    prevValue = nextValue;
+    nextValue = currentValue+prevValue;
+    return currentValue;
+  }
+}
+
 const makeCycler = undefined;
 const curry = undefined;
 const compose = undefined;
