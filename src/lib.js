@@ -14,26 +14,21 @@ const makeCounterFromN = function(count){
 
 //---------makeCounterFromZero--------
 const makeCounterFromZero = function(){
-  let count=0;
-  return function(){
-    return count++;
-  }
+  return makeCounterFromN(0);
 }
 
 //---------makeDeltaTracker---------
 const makeDeltaTracker = function(old){
   return function(delta){
-    if(!delta){delta=0};
-    let sum = old+delta;
-    old = old+delta;
-    return {old:sum-delta, delta:delta, new:sum};
+    if(!delta){delta=0;}
+    return {old:old, delta:delta, new:old=old+delta};
   }
 }
 
 //--------makeFiboGenerator------------
 const makeFiboGenerator = function(prevValue,nextValue){
-  if(!prevValue){prevValue =0;nextValue = 1};
-  if(!nextValue){nextValue = prevValue;prevValue =0};
+  if(!prevValue){prevValue =0;nextValue = 1;}
+  if(!nextValue){nextValue = prevValue;prevValue =0;}
   return function(){
     let currentValue = prevValue;
     prevValue = nextValue;
@@ -44,17 +39,10 @@ const makeFiboGenerator = function(prevValue,nextValue){
 
 //-----------makeCycler---------------
 const makeCycler = function(list){
-  let index = 0;
-  let NextValue = list[0];
+  let index=0;
+  let result = list.slice();
   return function(){
-    index= index+1;
-    if(index==list.length){
-      index = 0;
-    }
-    currentValue = NextValue;
-    NextValue = list[index];
-
-    return currentValue;
+    return result[(index++) % result.length];
   }
 }
 
