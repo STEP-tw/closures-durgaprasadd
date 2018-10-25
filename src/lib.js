@@ -58,7 +58,13 @@ const makeCycler = function(list){
   }
 }
 
-const curry = undefined;
+//-------------curry-------------
+const curry = function(func,number){
+  return function(firstArgument,secondArgument){
+    return func(number,firstArgument,secondArgument);
+  }
+}
+
 const compose = undefined;
 
 exports.makeConstant=makeConstant;
