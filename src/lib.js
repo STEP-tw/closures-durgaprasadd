@@ -42,7 +42,22 @@ const makeFiboGenerator = function(prevValue,nextValue){
   }
 }
 
-const makeCycler = undefined;
+//-----------makeCycler---------------
+const makeCycler = function(list){
+  let index = 0;
+  let NextValue = list[0];
+  return function(){
+    index= index+1;
+    if(index==list.length){
+      index = 0;
+    }
+    currentValue = NextValue;
+    NextValue = list[index];
+
+    return currentValue;
+  }
+}
+
 const curry = undefined;
 const compose = undefined;
 
