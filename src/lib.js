@@ -19,16 +19,15 @@ const makeCounterFromZero = function(){
 
 //---------makeDeltaTracker---------
 const makeDeltaTracker = function(old){
-  return function(delta){
-    if(!delta){delta=0;}
+  return function(delta = 0){
     return {old:old, delta:delta, new:old=old+delta};
   }
 }
 
 //--------makeFiboGenerator------------
-const makeFiboGenerator = function(prevValue,nextValue){
-  if(!prevValue){prevValue =0;nextValue = 1;}
-  if(!nextValue){nextValue = prevValue;prevValue =0;}
+const makeFiboGenerator = function(first = 1, second = 0){
+  let prevValue = Math.min(first,second);
+  let nextValue = Math.max(first,second);
   return function(){
     let currentValue = prevValue;
     prevValue = nextValue;
@@ -59,7 +58,6 @@ const compose = function(firstFunction,secondFunction){
     return firstFunction(secondFunction(list1,list2));
   }
 }
-
 
 exports.makeConstant=makeConstant;
 exports.makeCounterFromZero=makeCounterFromZero;
